@@ -68,7 +68,7 @@ const sr = ScrollReveal({
     duration: 2500,
     delay: 300,
 
-    reset:true
+    reset:false
 })
 
 sr.reveal('.home__data,.footer')

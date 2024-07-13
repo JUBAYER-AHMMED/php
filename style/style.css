@@ -12,6 +12,7 @@
     --container-color: hsl(34, 100%, 96%);
     --body-color-alt: hsl(34, 100%, 88%);
     --white-color: hsl(34, 100%, 96%);
+    --alter-Color: rgba(252, 45, 131, 0.979);
     /*========== Font and typography ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/
     --body-font: "Montserrat", sans-serif;
@@ -26,6 +27,7 @@
     /*========== z index ==========*/
     --z-tooltip: 10;
     --z-fixed: 100;
+    
 
     /* Shadow */
     --shadow-small-img: drop-shadow(0 4px 16px hsla(22, 100%, 8%, .2));
