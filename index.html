@@ -156,9 +156,9 @@
                     <img src="assets/popular-burger-chicken.png" alt="" class="popular__img">
                     
                     <h2 class="popular__title">Chicken <br> Burger</h2>
-                    <span class="popular__price">$6</span>
+                    <span class="popular__price" data-price="600">TK600</span>
 
-                    <button class="popular__button">
+                    <button class="popular__button" data-id="1" data-name="Chicken Burger" data-price="600">
                         <i class="ri-shopping-bag-3-fill"></i>
                     </button>
                 </article>
@@ -167,9 +167,9 @@
                     <img src="assets/popular-burger-meat.png" alt="" class="popular__img">
                     
                     <h2 class="popular__title">Meat <br> Burger</h2>
-                    <span class="popular__price">$10</span>
+                    <span class="popular__price" data-price="1000">TK1000</span>
 
-                    <button class="popular__button">
+                    <button class="popular__button" data-id="2" data-name="Meat Burger" data-price="1000">
                         <i class="ri-shopping-bag-3-fill"></i>
                     </button>
                 </article>
@@ -178,9 +178,9 @@
                     <img src="assets/popular-burger-grill.png" alt="" class="popular__img">
                     
                     <h2 class="popular__title">Grill <br> Burger</h2>
-                    <span class="popular__price">$12</span>
+                    <span class="popular__price" data-price="1200">TK1200</span>
 
-                    <button class="popular__button">
+                    <button class="popular__button" data-id="3" data-name="Grill Burger" data-price="1200">
                         <i class="ri-shopping-bag-3-fill"></i>
                     </button>
                 </article>
@@ -189,9 +189,9 @@
                     <img src="assets/popular-burger-classic.png" alt="" class="popular__img">
                     
                     <h2 class="popular__title">Classic <br> Burger</h2>
-                    <span class="popular__price">$8</span>
+                    <span class="popular__price" data-price="800">TK800</span>
 
-                    <button class="popular__button">
+                    <button class="popular__button" data-id="4" data-name="Classic Burger" data-price="800">
                         <i class="ri-shopping-bag-3-fill"></i>
                     </button>
                 </article>
@@ -200,9 +200,9 @@
                     <img src="assets/popular-burger-big.png" alt="" class="popular__img">
                     
                     <h2 class="popular__title">Big <br> Burger</h2>
-                    <span class="popular__price">$15</span>
+                    <span class="popular__price" data-price="1500">TK1500</span>
 
-                    <button class="popular__button">
+                    <button class="popular__button" data-id="5" data-name="Big Burger" data-price="1500">
                         <i class="ri-shopping-bag-3-fill"></i>
                     </button>
                 </article>
@@ -276,6 +276,98 @@
                 <img src="assets/sticker-soda.svg" alt="image" class="contact__sticker-2">
             </div>
         </section>
+        <section class="form">
+             <!-- The Form -->
+          <div class="contact__image">
+            <form id="contactForm" class="contact__form" method="POST" action="backend/submit_contact.php" novalidate>
+              <!-- Honeypot (anti-bot) -->
+              <input type="text" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+
+              <div class="form__row">
+                <div class="form__group">
+                  <label for="full_name">Full Name</label>
+                  <input id="full_name" name="full_name" type="text" class="input" placeholder="e.g., Jubayer Ahmmed" required minlength="2" maxlength="100"/>
+                  <p class="form__error" data-for="full_name"></p>
+                </div>
+
+                <div class="form__group">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" class="input" placeholder="you@example.com" required />
+                  <p class="form__error" data-for="email"></p>
+                </div>
+              </div>
+
+              <div class="form__row">
+                <div class="form__group">
+                  <label for="phone">Phone (optional)</label>
+                  <input id="phone" name="phone" type="tel" class="input" placeholder="+8801XXXXXXXXX" pattern="^\+?\d{10,15}$"/>
+                  <p class="form__error" data-for="phone"></p>
+                </div>
+
+                <div class="form__group">
+                  <label for="subject">Subject</label>
+                  <input id="subject" name="subject" type="text" class="input" placeholder="Order inquiry, feedback, etc." required minlength="3" maxlength="120"/>
+                  <p class="form__error" data-for="subject"></p>
+                </div>
+              </div>
+
+              <div class="form__group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" class="textarea" rows="6" placeholder="Write your message..." required minlength="10" maxlength="1000"></textarea>
+                <p class="form__error" data-for="message"></p>
+              </div>
+
+              <div class="form__agree">
+                <label class="checkbox">
+                  <input type="checkbox" id="agree" required />
+                  <span>I agree to the Terms & Privacy Policy</span>
+                </label>
+                <p class="form__error" data-for="agree"></p>
+              </div>
+
+              <button type="submit" class="button contact_btn" id="submitBtn">Send Message</button>
+
+              <div id="formNotice" class="form__notice" role="alert" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+        </section>
+       <!--cart card-->
+<section class="cart section" id="cart">
+    <h2 class="section__title">Your Cart</h2>
+    <div class="cart__container container">
+        <ul id="cartItems" class="cart__items"></ul>
+        <p id="cartTotal" class="cart__total"></p>
+
+        <div id="orderFormContainer" class="order__container">
+            <h3>Confirm Your Order</h3>
+            <form id="orderForm" class="order__form">
+                <div class="form__group">
+                    <label for="customerName">Full Name</label>
+                    <input type="text" id="customerName" name="customerName" required>
+                </div>
+                <div class="form__group">
+                    <label for="customerEmail">Email</label>
+                    <input type="email" id="customerEmail" name="customerEmail" required>
+                </div>
+                <div class="form__group">
+                    <label for="customerAddress">Address</label>
+                    <textarea id="customerAddress" name="customerAddress" required></textarea>
+                </div>
+                <div class="form__group">
+                    <label>Payment Method</label>
+                    <select id="paymentMethod" name="paymentMethod" required>
+                        <option value="bkash">Bkash</option>
+                    </select>
+                </div>
+                <button type="submit" class="button">Place Order</button>
+            </form>
+            <p id="orderNotice" class="order__notice"></p>
+        </div>
+    </div>
+</section>
+
+
     </main>
 
     <footer class="footer">
@@ -311,9 +403,12 @@
         <i class="ri-arrow-up-line"></i>
     </a>
 
-    <!-- scrollReveal -->
+    <!-- scrollReveal part-->
     <script src="js/scrollreveal.min.js"></script>
 
     <script src="js/script.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/cart.js"></script>
+
 </body>
 </html>
