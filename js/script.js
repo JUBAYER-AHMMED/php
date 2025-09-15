@@ -1,3 +1,5 @@
+//---------script.js--------------------
+//------------------------------------//
 const navMenu = document.getElementById('nav-menu'),
       navToggle = document.getElementById('nav-toggle'),
       navClose = document.getElementById('nav-close');
@@ -78,3 +80,6 @@ sr.reveal('.home__ingredient', {delay:1600, interval:100})
 sr.reveal('.recipe__img, .delivery__img,.contact__img',{origin: 'left',distance: '100px'})
 sr.reveal('.recipe__data,.delivery__data,.contact__data',{origin: 'right',distance: '100px'})
 sr.reveal('.popular__card',{interval:100})
+
+//---------------------------//
+//

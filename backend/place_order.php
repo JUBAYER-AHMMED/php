@@ -3,42 +3,22 @@ declare(strict_types=1);
 header('Content-Type: application/json');
 require_once __DIR__ . '/db.php';
 
-$data = json_decode(file_get_contents('php://input'), true);
-if (!$data) {
-    echo json_encode(['success' => false, 'message' => 'Invalid data']);
-    exit;
-}
+$d = json_decode(file_get_contents('php://input'), true) ?: [];
+$n=trim($d['customerName']??''); 
+$e=trim($d['customerEmail']??''); 
+$a=trim($d['customerAddress']??''); 
+$p=trim($d['paymentMethod']??''); 
+$c=$d['cartItems']??[];
 
-$name = trim($data['customerName'] ?? '');
-$email = trim($data['customerEmail'] ?? '');
-$address = trim($data['customerAddress'] ?? '');
-$payment = trim($data['paymentMethod'] ?? '');
-$cartItems = $data['cartItems'] ?? [];
+if(!$n||!$e||!$a||!$c){ echo json_encode(['success'=>false,'message'=>'All fields are required']); exit; }
 
-if (!$name || !$email || !$address || empty($cartItems)) {
-    echo json_encode(['success' => false, 'message' => 'All fields are required']);
-    exit;
-}
+$t=0; foreach($c as $i) $t+=$i['price']*$i['quantity'];
 
-$total = 0;
-foreach ($cartItems as $item) {
-    $total += $item['price'] * $item['quantity'];
-}
-
-try {
-    $stmt = $pdo->prepare("INSERT INTO orders (customer_name, email, address, payment_method, total_amount, cart_items, created_at)
-                           VALUES (:name, :email, :address, :payment, :total, :cart, NOW())");
-    $stmt->execute([
-        ':name' => $name,
-        ':email' => $email,
-        ':address' => $address,
-        ':payment' => $payment,
-        ':total' => $total,
-        ':cart' => json_encode($cartItems)
-    ]);
-
-    echo json_encode(['success' => true, 'total' => $total]);
-
-} catch (Exception $e) {
-    echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+try{
+  $pdo->prepare("INSERT INTO orders (customer_name,email,address,payment_method,total_amount,cart_items,created_at)
+                 VALUES(:n,:e,:a,:p,:t,:c,NOW())")
+      ->execute([':n'=>$n,':e'=>$e,':a'=>$a,':p'=>$p,':t'=>$t,':c'=>json_encode($c)]);
+  echo json_encode(['success'=>true,'total'=>$t]);
+}catch(Exception $ex){
+  echo json_encode(['success'=>false,'message'=>'Database error']);
 }

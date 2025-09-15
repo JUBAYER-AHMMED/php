@@ -57,14 +57,12 @@
             <div class="home__container container grid">
                 <div class="home__data">
                     <h1 class="home__title">Love Every <br> Burger</h1>
-
                     <p class="home__description">
                         We serve the best burgers on the planet,
                         paving the way for cooking and preparing
                         hot, delicious burgers.
                     </p>
                     <a href="#popular" class="button">Bite now</a>
-
                     <img src="assets/sticker-potatoes.svg" alt="image" class="home__sticker">
                 </div>
                 <div class="home__images">
@@ -83,7 +81,6 @@
         <!-- RECIPE -->
         <section class="recipe section problem" id="recipe">
             <h2 class="section__title">Our Secret Recipe</h2>
-
             <div class="recipe__container container grid">
                 <div class="recipe__image">
                     <img src="assets/recipe-burger.png" alt="" class="recipe__img">
@@ -99,51 +96,42 @@
                             <p class="recipe__description">Fresh bread, baked to perfection.</p>
                         </div>
                     </div>
-
                     <div class="recipe__card">
                         <div class="recipe__box">
                             <img src="assets/recipe-cheese.png" alt="image">
                         </div>
-
                         <div class="txt">
                             <h3 class="recipe__title">Cheese</h3>
                             <p class="recipe__description">Cheese for a fantastic and healthy future.</p>
                         </div>
                     </div>
-
                     <div class="recipe__card">
                         <div class="recipe__box">
                             <img src="assets/recipe-meat.png" alt="image">
                         </div>
-
                         <div class="txt">
                             <h3 class="recipe__title">Meat</h3>
                             <p class="recipe__description">100% pure beef, big and meaty.</p>
                         </div>
                     </div>
-
                     <div class="recipe__card">
                         <div class="recipe__box">
                             <img src="assets/recipe-vegetable.png" alt="image">
                         </div>
-
                         <div class="txt">
                             <h3 class="recipe__title">Vegetables</h3>
                             <p class="recipe__description">Vegetables full of the essence of nature and organic.</p>
                         </div>
                     </div>
-
                     <div class="recipe__card">
                         <div class="recipe__box">
                             <img src="assets/recipe-sauces.png" alt="image">
                         </div>
-
                         <div class="txt">
                             <h3 class="recipe__title">Sauces</h3>
                             <p class="recipe__description">Fresh sauces, delicious for the palate.</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -184,7 +172,6 @@
                         <i class="ri-shopping-bag-3-fill"></i>
                     </button>
                 </article>
-
                 <article class="popular__card">
                     <img src="assets/popular-burger-classic.png" alt="" class="popular__img">
                     
@@ -195,13 +182,10 @@
                         <i class="ri-shopping-bag-3-fill"></i>
                     </button>
                 </article>
-
                 <article class="popular__card">
                     <img src="assets/popular-burger-big.png" alt="" class="popular__img">
-                    
                     <h2 class="popular__title">Big <br> Burger</h2>
                     <span class="popular__price" data-price="1500">TK1500</span>
-
                     <button class="popular__button" data-id="5" data-name="Big Burger" data-price="1500">
                         <i class="ri-shopping-bag-3-fill"></i>
                     </button>
@@ -213,24 +197,19 @@
             <div class="delivery__container container grid">
                 <div class="delivery__data">
                     <h2 class="section__title">Fast Delivery</h2>
-
                     <p class="delivery__description">
                         Place your order for your favourite burger and we will deliver it to your door in minutes, get in touch and don't leave hungry.
                     </p>
-
                     <a href="#contact" class="button">Contact Now</a>
-
                     <img src="assets/sticker-glass.svg" alt="image" class="delivery__sticker">
                 </div>
                 <img src="assets/delivery-burger.png" alt="image" class="delivery__img">
             </div>
         </section>
         <!-- Contact section -->
-
         <section class="contact section" id="contact">
             <div class="contact__container container grid">
                 <h2 class="section__title">Contact Now</h2>
-                
                 <div class="contact__content grid">
                     <div class="contact__data grid">
                         <div>
@@ -247,31 +226,25 @@
                                 </a>
                             </div>
                         </div>
-                        
                         <div>
                             <h3 class="contact__title">Call Us and Order</h3>
-
                             <address class="contact__info">
                                 +880-1717XXXXX
                                 +880-1980YY
                             </address>
                         </div>
-
                         <div>
                             <h3 class="contact__title">Find Us here</h3>
-
                             <address class="contact__info">
                                 Lima - Sun City - Peru <br>
                                 Av. Moon #4321
                             </address>
                         </div>
                     </div>
-
                     <div class="contact__image">
                         <img src="assets/contact-man.png" alt="image" class="contact__img">
                     </div>
                 </div>
-
                 <img src="assets/sticker-burger.svg" alt="image" class="contact__sticker-1">
                 <img src="assets/sticker-soda.svg" alt="image" class="contact__sticker-2">
             </div>
@@ -282,41 +255,35 @@
             <form id="contactForm" class="contact__form" method="POST" action="backend/submit_contact.php" novalidate>
               <!-- Honeypot (anti-bot) -->
               <input type="text" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true"/>
-
               <div class="form__row">
                 <div class="form__group">
                   <label for="full_name">Full Name</label>
                   <input id="full_name" name="full_name" type="text" class="input" placeholder="e.g., Jubayer Ahmmed" required minlength="2" maxlength="100"/>
                   <p class="form__error" data-for="full_name"></p>
                 </div>
-
                 <div class="form__group">
                   <label for="email">Email</label>
                   <input id="email" name="email" type="email" class="input" placeholder="you@example.com" required />
                   <p class="form__error" data-for="email"></p>
                 </div>
               </div>
-
               <div class="form__row">
                 <div class="form__group">
                   <label for="phone">Phone (optional)</label>
                   <input id="phone" name="phone" type="tel" class="input" placeholder="+8801XXXXXXXXX" pattern="^\+?\d{10,15}$"/>
                   <p class="form__error" data-for="phone"></p>
                 </div>
-
                 <div class="form__group">
                   <label for="subject">Subject</label>
                   <input id="subject" name="subject" type="text" class="input" placeholder="Order inquiry, feedback, etc." required minlength="3" maxlength="120"/>
                   <p class="form__error" data-for="subject"></p>
                 </div>
               </div>
-
               <div class="form__group">
                 <label for="message">Message</label>
                 <textarea id="message" name="message" class="textarea" rows="6" placeholder="Write your message..." required minlength="10" maxlength="1000"></textarea>
                 <p class="form__error" data-for="message"></p>
               </div>
-
               <div class="form__agree">
                 <label class="checkbox">
                   <input type="checkbox" id="agree" required />
@@ -324,60 +291,53 @@
                 </label>
                 <p class="form__error" data-for="agree"></p>
               </div>
-
               <button type="submit" class="button contact_btn" id="submitBtn">Send Message</button>
-
               <div id="formNotice" class="form__notice" role="alert" aria-live="polite"></div>
             </form>
           </div>
         </div>
         </section>
        <!--cart card-->
-<section class="cart section" id="cart">
-    <h2 class="section__title">Your Cart</h2>
-    <div class="cart__container container">
-        <ul id="cartItems" class="cart__items"></ul>
-        <p id="cartTotal" class="cart__total"></p>
+    <section class="cart section" id="cart">
+        <h2 class="section__title">Your Cart</h2>
+        <div class="cart__container container">
+            <ul id="cartItems" class="cart__items"></ul>
+            <p id="cartTotal" class="cart__total"></p>
 
-        <div id="orderFormContainer" class="order__container">
-            <h3>Confirm Your Order</h3>
-            <form id="orderForm" class="order__form">
-                <div class="form__group">
-                    <label for="customerName">Full Name</label>
-                    <input type="text" id="customerName" name="customerName" required>
-                </div>
-                <div class="form__group">
-                    <label for="customerEmail">Email</label>
-                    <input type="email" id="customerEmail" name="customerEmail" required>
-                </div>
-                <div class="form__group">
-                    <label for="customerAddress">Address</label>
-                    <textarea id="customerAddress" name="customerAddress" required></textarea>
-                </div>
-                <div class="form__group">
-                    <label>Payment Method</label>
-                    <select id="paymentMethod" name="paymentMethod" required>
-                        <option value="bkash">Bkash</option>
-                    </select>
-                </div>
-                <button type="submit" class="button">Place Order</button>
-            </form>
-            <p id="orderNotice" class="order__notice"></p>
+            <div id="orderFormContainer" class="order__container">
+                <h3>Confirm Your Order</h3>
+                <form id="orderForm" class="order__form">
+                    <div class="form__group">
+                        <label for="customerName">Full Name</label>
+                        <input type="text" id="customerName" name="customerName" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="customerEmail">Email</label>
+                        <input type="email" id="customerEmail" name="customerEmail" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="customerAddress">Address</label>
+                        <textarea id="customerAddress" name="customerAddress" required></textarea>
+                    </div>
+                    <div class="form__group">
+                        <label>Payment Method</label>
+                        <select id="paymentMethod" name="paymentMethod" required>
+                            <option value="bkash">Bkash</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="button">Place Order</button>
+                </form>
+                <p id="orderNotice" class="order__notice"></p>
+            </div>
         </div>
-    </div>
-</section>
-
-
+    </section>
     </main>
-
     <footer class="footer">
         <div class="footer__container container grid">
             <a href="#" class="footer__logo">Burger</a>
-
             <div class="footer__content grid">
                 <a href="#" class="footer__link">Terms & Agreements</a>
                 <a href="#" class="footer__link">Privacy Policy</a>
-
                 <div class="footer__social">
                     <a href="#" target="_blank">
                         <i class="ri-facebook-circle-fill"></i>
@@ -391,24 +351,18 @@
                 </div>
             </div>
         </div>
-
-        <span class="footer__copy">
+        <span class="footer_ _copy">
             &#169; All Rights Reserved By JUBAYER
         </span>
     </footer> 
-    
     <!-- scroll up -->
-
     <a href="#" class="scrollup" id="scroll-up">
         <i class="ri-arrow-up-line"></i>
     </a>
-
     <!-- scrollReveal part-->
     <script src="js/scrollreveal.min.js"></script>
-
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
     <script src="js/cart.js"></script>
-
 </body>
 </html>

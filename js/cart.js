@@ -3,102 +3,71 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartTotalEl = document.getElementById("cartTotal");
   const orderForm = document.getElementById("orderForm");
   const orderNotice = document.getElementById("orderNotice");
-  
-  // 1️⃣ Get cart from localStorage
-  function getCart() {
-    return JSON.parse(localStorage.getItem("cart")) || [];
-  }
 
-  // 2️⃣ Save cart to localStorage
-  function saveCart(cart) {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
+  const getCart = () => JSON.parse(localStorage.getItem("cart")) || [];
+  const saveCart = (cart) => localStorage.setItem("cart", JSON.stringify(cart));
 
-  // 3️⃣ Render cart items
-  function renderCart() {
+  const renderCart = () => {
     const cart = getCart();
-    cartItemsEl.innerHTML = "";
-    let total = 0;
+    cartItemsEl.innerHTML = cart.length
+      ? cart
+          .map(
+            (item, i) => `
+          <li class="cart__item">
+            ${item.name} x${item.quantity} - TK${item.price * item.quantity}
+            <button class="cart__btn" data-action="decrease" data-index="${i}">-</button>
+            <button class="cart__btn" data-action="increase" data-index="${i}">+</button>
+            <button class="cart__btn" data-action="remove" data-index="${i}">x</button>
+          </li>
+        `
+          )
+          .join("")
+      : "<li>Your cart is empty.</li>";
 
-    if (cart.length === 0) {
-      cartItemsEl.innerHTML = "<li>Your cart is empty.</li>";
-    } else {
-      cart.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.classList.add("cart__item");
-        li.innerHTML = `
-          ${item.name} x${item.quantity} - TK${item.price * item.quantity}
-          <button class="cart__btn" data-action="decrease" data-index="${index}">-</button>
-          <button class="cart__btn" data-action="increase" data-index="${index}">+</button>
-          <button class="cart__btn" data-action="remove" data-index="${index}">x</button>
-        `;
-        cartItemsEl.appendChild(li);
-        total += item.price * item.quantity;
-      });
-    }
+    cartTotalEl.textContent = `Total: TK${cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    )}`;
+  };
 
-    cartTotalEl.textContent = `Total: TK${total}`;
-  }
-
-  // 4️⃣ Add item to cart
-  function addToCart(item) {
+  const addToCart = (item) => {
     const cart = getCart();
-    const existingItem = cart.find((i) => i.id === item.id);
-
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      cart.push({ ...item, quantity: 1 });
-    }
-
+    const existing = cart.find((i) => i.id === item.id);
+    existing ? existing.quantity++ : cart.push({ ...item, quantity: 1 });
     saveCart(cart);
     renderCart();
-  }
+  };
 
-  // 5️⃣ Handle clicks inside cart (increase/decrease/remove)
   cartItemsEl.addEventListener("click", (e) => {
-    const button = e.target.closest("button");
-    if (!button) return;
-
+    const btn = e.target.closest("button");
+    if (!btn) return;
     const cart = getCart();
-    const index = parseInt(button.dataset.index);
-    const action = button.dataset.action;
+    const i = parseInt(btn.dataset.index);
+    const action = btn.dataset.action;
 
-    if (action === "increase") {
-      cart[index].quantity += 1;
-    } else if (action === "decrease") {
-      cart[index].quantity -= 1;
-      if (cart[index].quantity <= 0) cart.splice(index, 1);
-    } else if (action === "remove") {
-      cart.splice(index, 1);
-    }
+    if (action === "increase") cart[i].quantity++;
+    else if (action === "decrease")
+      cart[i].quantity > 1 ? cart[i].quantity-- : cart.splice(i, 1);
+    else if (action === "remove") cart.splice(i, 1);
 
     saveCart(cart);
     renderCart();
   });
 
-  // 6️⃣ Attach event listener to all popular buttons
-  const popularButtons = document.querySelectorAll(".popular__button");
-  popularButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const item = {
+  document.querySelectorAll(".popular__button").forEach((btn) =>
+    btn.addEventListener("click", () =>
+      addToCart({
         id: btn.dataset.id,
         name: btn.dataset.name,
         price: parseInt(btn.dataset.price),
-      };
-      addToCart(item);
-    });
-  });
+      })
+    )
+  );
 
-  // 7️⃣ Handle order form submission
   orderForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const cart = getCart();
-    if (cart.length === 0) {
-      alert("Your cart is empty!");
-      return;
-    }
+    if (!cart.length) return alert("Your cart is empty!");
 
     const formData = {
       customerName: document.getElementById("customerName").value.trim(),
@@ -123,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
       const data = await res.json();
 
       if (data.success) {
@@ -132,15 +100,11 @@ document.addEventListener("DOMContentLoaded", () => {
         renderCart();
         orderForm.reset();
         orderNotice.textContent = "";
-      } else {
-        orderNotice.textContent = data.message || "Error placing order.";
-      }
-    } catch (err) {
-      console.error(err);
+      } else orderNotice.textContent = data.message || "Error placing order.";
+    } catch {
       orderNotice.textContent = "Error placing order. Please try again.";
     }
   });
 
-  // 8️⃣ Initial render
   renderCart();
 });
